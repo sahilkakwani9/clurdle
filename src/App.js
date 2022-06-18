@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import {useState} from 'react';
 import { useEffect } from 'react';
+import Wordle from './components/Clurdle';
 
 function App() {
   const [solutionWord,setSolutionWord] = useState(null);
@@ -16,7 +17,7 @@ function App() {
   return (
     <div className="App">
       <h1>Curdle</h1>
-      {solutionWord && <div>Solution is: {solutionWord}</div>}
+      {solutionWord && <Wordle solution={solutionWord}/>}
     </div>
   );
 }

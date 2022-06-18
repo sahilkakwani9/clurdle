@@ -22,11 +22,26 @@ const useClurdle = (solution)=>{
 
     // handle keyup event & track current guess
     // if user presses enter, add the new guess
-    const keyClicked = ()=>{
+    const keyClicked = ({key})=>{
 
+        if (key === "Backspace"){
+            setCurrentGuess((prev)=>{
+                return prev.slice(0,-1)
+            })
+            return
+        }
+        
+
+        if (/^[A-Za-z]$/.test(key)){
+            if (currentGuess.length<6){
+                setCurrentGuess((prev)=>{
+                    return prev+key;
+                })
+            }
+        }
     }
 
     return {turn, currentGuess, guesses, isCorrect, keyClicked}
 }
 
-export default useWordle
+export default useClurdle
