@@ -1,9 +1,9 @@
 import React from 'react'
 import { useEffect } from 'react'
-import useWordle from '../hooks/useClurdle'
+import useClurdle from '../hooks/useClurdle'
 
-export default function Wordle({solution}) {
-  const {currentGuess, keyClicked} = useWordle(solution)
+export default function Clurdle({solution}) {
+  const {currentGuess, keyClicked} = useClurdle(solution)
     useEffect(()=>{
       window.addEventListener('keyup', keyClicked);
 
