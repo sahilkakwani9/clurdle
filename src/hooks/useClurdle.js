@@ -3,8 +3,8 @@ import { useState } from "react";
 const useClurdle = (solution)=>{
     const [turn,setTurn] = useState(0); //keeps track of no. of turns
     const [currentGuess, setCurrentGuess] = useState(''); //gets updated on every letter user types in the field
-    const [guesses, setGuesses] = useState([]); //each guess an array of individual letters as objects
-    const [history, setHistory] = useState(["sahil","kings"]); //each guess is a string
+    const [guesses, setGuesses] = useState([...Array(6)]); //each guess an array of individual letters as objects
+    const [history, setHistory] = useState([]); //each guess is a string
     const [isCorrect, setIsCorrect] = useState(false); //guess is correct?
 
     // format a guess into an array of letter objects 
@@ -40,8 +40,32 @@ const useClurdle = (solution)=>{
     // add a new guess to the guesses state
     // update the isCorrect state if the guess is correct
     // add one to the turn state
-    const addGuess = ()=>{
+    const addGuess = (formatGuess)=>{
 
+        //if the recent guess is solution then set isCorrect to True
+        if (currentGuess === solution){
+            setIsCorrect(true)
+        }
+
+        //add the guess object array to Guesses array
+        setGuesses((prevGuess)=>{
+            // let oldGuesses = [...prevGuess];
+            // oldGuesses[turn] = formatGuess;
+            prevGuess[turn] = formatGuess;
+            return prevGuess;
+        })
+
+        //add the current guess(string) to history array 
+        setHistory((prev)=>{
+            let updatedHistory = [...prev,currentGuess];
+            return updatedHistory;
+        })
+
+        setTurn((prev)=>{
+            return prev+1;
+        })
+
+        setCurrentGuess('');
     } 
 
     // handle keyup event & track current guess
@@ -64,7 +88,8 @@ const useClurdle = (solution)=>{
                 return
             }
             const formattedGuess = formatGuess();
-            console.log(formattedGuess);
+            addGuess(formattedGuess)
+            
         }
         if (key === "Backspace"){
             setCurrentGuess((prev)=>{
@@ -83,7 +108,7 @@ const useClurdle = (solution)=>{
         }
     }
 
-    return {turn, currentGuess, guesses, isCorrect, keyClicked}
+    return {turn, currentGuess, guesses, isCorrect, history, keyClicked}
 }
 
 export default useClurdle

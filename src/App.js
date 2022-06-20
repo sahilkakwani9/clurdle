@@ -13,6 +13,8 @@ function App() {
         setSolutionWord(randomWord.word);
       })
   },[solutionWord])
+
+  
   return (
     <div className="App">
       <h1>Clurdle</h1>
