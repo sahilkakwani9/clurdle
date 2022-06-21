@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
 import useClurdle from '../hooks/useClurdle'
+import Grid from './Grid'
 
 export default function Clurdle({solution}) {
-  const {currentGuess, keyClicked, guesses, isCorrect, history} = useClurdle(solution)
+  const {currentGuess, keyClicked, guesses, isCorrect, history, turn} = useClurdle(solution)
     useEffect(()=>{
       window.addEventListener('keyup', keyClicked);
 
@@ -15,7 +16,11 @@ export default function Clurdle({solution}) {
       console.log(history);
       console.log(isCorrect);
     },[guesses, isCorrect, history])
-  return (
+  return (<>
     <div>{currentGuess}</div>
+    <Grid guesses={guesses} turn={turn} currentGuess={currentGuess}/>
+  </>
+    
+
   )
 }
