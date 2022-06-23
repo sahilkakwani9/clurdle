@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import { useEffect } from 'react';
 import Clurdle from './components/Clurdle';
+import Keypad from './components/Keypad';
 
 function App() {
   const [solutionWord,setSolutionWord] = useState(null);
@@ -19,6 +20,7 @@ function App() {
     <div className="App">
       <h1>Clurdle</h1>
       {solutionWord && <Clurdle solution={solutionWord}/>}
+      <Keypad/>
     </div>
   );
 }

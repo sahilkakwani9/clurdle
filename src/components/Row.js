@@ -18,7 +18,7 @@ export default function Row({guesses, currentGuess}) {
             <div className='row current'>
                 {
                     letters.map((l,i)=>(
-                        <div key={i}>{l}</div>
+                        <div className='roll' key={i}>{l}</div>
                     ))
                 }
                 {
