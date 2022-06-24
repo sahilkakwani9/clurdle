@@ -2,17 +2,21 @@ import {useState} from 'react';
 import { useEffect } from 'react';
 import Clurdle from './components/Clurdle';
 import Keypad from './components/Keypad';
+import db from './data/db.json'
 
 function App() {
   const [solutionWord,setSolutionWord] = useState(null);
   useEffect(()=>{
     document.title = 'clurdle';
-    fetch('http://localhost:3001/solution')
-      .then(res=>res.json())
-      .then(json=>{
-        const randomWord = json[Math.floor(Math.random()*json.length)];
-        setSolutionWord(randomWord.word);
-      })
+    //// fetch('http://localhost:3001/solution')
+    //   .then(res=>res.json())
+    //   .then(json=>{
+    //     const randomWord = json[Math.floor(Math.random()*json.length)];
+    //     setSolutionWord(randomWord.word);
+    //   })
+    const solutionArray = db.solution;
+    const randomWord = solutionArray[Math.floor(Math.random()*solutionArray.length)];
+    setSolutionWord(randomWord.word);
   },[solutionWord])
 
   
