@@ -20,7 +20,6 @@ function App() {
     <div className="App">
       <h1>Clurdle</h1>
       {solutionWord && <Clurdle solution={solutionWord}/>}
-      <Keypad/>
     </div>
   );
 }

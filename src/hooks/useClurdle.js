@@ -6,6 +6,7 @@ const useClurdle = (solution)=>{
     const [guesses, setGuesses] = useState([...Array(6)]); //each guess an array of individual letters as objects
     const [history, setHistory] = useState([]); //each guess is a string
     const [isCorrect, setIsCorrect] = useState(false); //guess is correct?
+    const [usedWord, setUsedWord] = useState({}); //{'a': "green", 'b': "grey"} tracking color 
 
     // format a guess into an array of letter objects 
     // e.g. [{key: 'a', color: 'yellow'}]
@@ -65,6 +66,30 @@ const useClurdle = (solution)=>{
             return prev+1;
         })
 
+        
+
+        setUsedWord((prevUsedWords)=>{
+            formatGuess.forEach((l)=>{
+                const currentColor = prevUsedWords[l.key];
+
+                if (l.color === 'green'){
+                    prevUsedWords[l.key] = 'green';
+                    return;
+                }
+
+                if (l.color === 'yellow' && currentColor !== 'green'){
+                    prevUsedWords[l.key] = 'yellow';
+                    return;
+                }
+
+                if (l.color === 'grey' && currentColor !== ('green' || 'yellow')){
+                    prevUsedWords[l.key] = 'grey';
+                    return;
+                }
+            })
+            return prevUsedWords
+        })
+
         setCurrentGuess('');
     } 
 
@@ -108,7 +133,7 @@ const useClurdle = (solution)=>{
         }
     }
 
-    return {turn, currentGuess, guesses, isCorrect, history, keyClicked}
+    return {turn, currentGuess, guesses, isCorrect, history, usedWord, keyClicked}
 }
 
 export default useClurdle
