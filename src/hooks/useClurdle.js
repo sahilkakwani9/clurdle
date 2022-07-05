@@ -255,10 +255,12 @@ const useClurdle = (solution)=>{
             addKeyGuess(formattedGuess)
             
         }
-        if (key === "Backspace"){
+        if (key === "<-"){
             setKeyCurrentGuess((prev)=>{
                 return prev.slice(0,-1)
             })
+            
+            setGuess(keyCurrentGuess.slice(0,-1));
             return
         }
 
