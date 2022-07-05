@@ -77,12 +77,17 @@ h1 {
   border-radius: 6px;
   line-height: 50px;
 }
+.keypad > div.enter {
+  width: 60px;
+}
 
 .keypad > div.green {
   background: #5ac85a;
   color: #fff;
   transition: all 0.3s ease-in;
 }
+
+
 .keypad > div.yellow {
   background: #e2cc68;
   color: #fff;
@@ -92,6 +97,12 @@ h1 {
   background: #a1a1a1;
   color: #fff;
   transition: all 0.3s ease-in;
+}
+
+.word {
+  color: black;
+  /* background-color: black;
+  min-height: 100px; */
 }
 
 .modal {

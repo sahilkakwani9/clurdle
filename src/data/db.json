@@ -25,7 +25,8 @@
         {"key": "w"},
         {"key": "x"},
         {"key": "y"},
-        {"key": "z"}
+        {"key": "z"},
+        {"key": "Enter"}
       ],
     "solution": [
         {"id": 1, "word": "ninja"},
